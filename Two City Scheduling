@@ -1,0 +1,16 @@
+class Solution(object):
+    def twoCitySchedCost(self, costs):
+        """
+        :type costs: List[List[int]]
+        :rtype: int
+        """
+        sumsI =[i for i,j in costs]
+        diff = [j-i for i,j in costs]
+        
+        # print(sumsI,diff)
+        n = len(costs)//2
+        return (sum(sumsI) + sum(sorted(diff)[:n]))
+        # sumMin = 0      
+        # for i in costs:                       
+        #     sumMin += min(i[0],i[1])      
+        # return sumMin
