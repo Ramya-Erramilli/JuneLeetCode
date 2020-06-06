@@ -1,0 +1,34 @@
+class Solution(object):
+
+    def __init__(self, w):
+        """
+        :type w: List[int]
+        """
+        self.prefixSum = []
+        prefix_sum_value = 0
+        for weight in w:
+            prefix_sum_value += weight
+            self.prefixSum.append(prefix_sum_value)
+        self.totalSum = prefix_sum_value
+
+    def pickIndex(self):
+        """
+        :rtype: int
+        """
+        randomNumber = self.totalSum * random.random()
+        
+        low,high = 0, len(self.prefixSum)
+        
+        while(low<high):
+            mid = low + (high-low)//2
+            if randomNumber>self.prefixSum[mid]:
+                low = mid+1
+            else:
+                high = mid
+        return low
+        
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(w)
+# param_1 = obj.pickIndex()
