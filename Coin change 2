@@ -1,0 +1,14 @@
+class Solution(object):
+    def change(self, amount, coins):
+        """
+        :type amount: int
+        :type coins: List[int]
+        :rtype: int
+        """
+        
+        DP = [0]*(amount+1)
+        DP[0] = 1
+        for face_amount in coins:
+            for cur_amount in range(face_amount, amount+1):
+                DP[cur_amount] += DP[cur_amount-face_amount]
+        return DP[-1]
