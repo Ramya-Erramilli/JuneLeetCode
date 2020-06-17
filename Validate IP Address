@@ -1,0 +1,39 @@
+class Solution(object):
+    def validIPAddress(self, IP):
+        """
+        :type IP: str
+        :rtype: str
+        """
+#         values4 = IP.split(".")
+#         values6 = IP.split(":")
+#         res = 0
+        
+#         # print(values4)
+#         if len(values4)==4:
+#             for i in values4:
+#                 if i== "" or (i[0] == "0" and len(i)!=1) or not i.isdigit() or int(i)>255:
+#                     res = 1
+#                     break
+#             if not res:    
+#                 return "IPv4"
+       
+#         if len(values6)==8:
+#             for i in values6:
+#                 if i==" " or len(i)>4 or not all(c in hexdigits for c in i):
+#                     res = 1
+#                     break
+#             if not res:
+#                 return "IPv6"
+#         return "Neither"
+        def validIPv4(IP):
+            parts = IP.split(".")
+            return len(parts) == 4 and all(p in set(map(str, range(256))) for p in parts)
+            
+        def validIPv6(IP):
+            parts = IP.split(":")
+            hexdigits = '0123456789abcdef'
+            return len(parts) == 8 and all(0 < len(p) <= 4 and all(c.lower() in hexdigits for c in p) for p in parts)
+        
+        if validIPv4(IP): return "IPv4"
+        if validIPv6(IP): return "IPv6"
+        return "Neither"
