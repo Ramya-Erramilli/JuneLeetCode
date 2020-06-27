@@ -1,0 +1,15 @@
+from collections import Counter
+
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dicto = Counter(nums)
+        
+        # for key,value in dicto.items():
+        #     if value==1:
+        #         return key
+        
+        return [ number for number in dicto if dicto[number] == 1][0]
